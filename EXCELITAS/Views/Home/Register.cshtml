@@ -1,0 +1,68 @@
+﻿@model EXCELITAS.data.TblUser
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EXCELITAS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EXCELITAS.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container ">
+        <br />
+        <br />
+        <br />
+        <br />
+     
+
+            <h1>Register</h1>
+
+            <h4>Form Register</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+                            <label for="Username" class="form-label">Username</label>
+                            @Html.TextBoxFor(m=>m.Username, new{@class="form-control"})
+                        </div>
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Password</label>
+                            @Html.PasswordFor(m=>m.Password, new{@class="form-control"})
+                        </div>
+                        <div class="mb-3">
+                            <label for="Role" class="form-label">Role</label>
+                            @Html.DropDownListFor(m=>m.Role, new SelectListItem[] {
+                            new SelectListItem() {Text = "Admin Input", Value="2"},
+                            new SelectListItem() {Text = "Admin Approval", Value="3"},
+                            new SelectListItem() {Text = "Admin Operasional", Value="4"},
+                            new SelectListItem() {Text = "Admin View", Value="5"},
+                            new SelectListItem() {Text = "Super Admin", Value="1"}
+                            }, new { @class="form-select"})
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" value="Index">Submit</button>
+                        </div>
+                    }
+                <div>
+                <a asp-action="Index">Back Login</a>
+            </div>
+
+    
+    </div>
+</body>
+</html>
+
+

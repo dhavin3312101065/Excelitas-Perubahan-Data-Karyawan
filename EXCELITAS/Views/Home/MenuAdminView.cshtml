@@ -1,0 +1,107 @@
+﻿@model EXCELITAS.Models.EmployeeModel
+@inject IHttpContextAccessor Accessor
+@{
+    ViewData["Title"] = "Menu Admin View";
+
+}
+
+<h4 style="color :blue" , class="page-title">Welcome, You are logged in as @Accessor.HttpContext.Session.GetString("Username")</h4>
+<br />
+
+
+
+    @using (Html.BeginForm("Export", "Home", FormMethod.Get))
+    {
+		<div class="row">
+			<div class="col-sm">
+			<div class="mb-3">
+				<select name="pilihan" id="pilihan" class="form-control">
+					<option value="ACTIVE">ACTIVE</option>
+					<option value="INACTIVE">INACTIVE</option>
+				</select>
+			</div>
+			</div>
+			<div class="col-sm">
+			<input type="submit" id="btnSubmit" class="btn btn-success" value="Export" />
+			</div>
+		</div>
+          
+
+		
+    }
+
+                <div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+								<h4 class="card-title">Approved Data</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables" class="display table table-striped table-hover" >
+											<thead>
+												<tr>
+													<th>LOCALID</th>
+													<th>GLOBALID</th>
+													<th>FULLNAME</th>
+													<th>Gender</th>
+													<th>Employment Type</th>
+													<th>Join Date</th>
+													<th>Grade or Level</th>
+													<th>Job Title</th>
+													<th>Labor Type</th>
+													<th>Department</th>
+													<th>Supervisor Name</th>
+													<th>Keterangan</th>
+													<th>Action</th> 
+													
+												</tr>
+											</thead>											
+											<tbody>
+												@if (@Model.EmployeeList.Count > 0)
+												{
+													foreach (var item in @Model.EmployeeList)
+													{
+														<tr>
+															<td>@item.Basicinfo_LOCALID</td>
+															<td>@item.Basicinfo_GLOBALID</td>
+															<td>@item.Basicinfo_FULLNAME</td>
+															<td>@item.Basicinfo_Gender</td>
+															<td>@item.Employmentstatus_EmploymentType</td>
+															<td>@item.Employmentstatus_JoinDate</td>
+															<td>@item.Jobprofile_GradeORLevel</td>
+															<td>@item.Jobprofile_JobTitle</td>
+															<td>@item.Jobprofile_LaborType</td>
+															<td>@item.Jobprofile_Department</td>
+															<td>@item.Jobprofile_SupervisorName</td>
+
+															@if (item.AdminApproval == 1)
+															{
+																<td>Data Oke</td>
+															}
+															else if (item.AdminApproval == 2)
+															{
+																<td> Menunggu Approval </td>
+															}
+															else if (item.AdminApproval == 3)
+															{
+																<td> Pengajuan data ditolak </td>
+															}
+
+															<td>
+																<a href="../Home/Detail/?Basicinfo_LOCALID=@item.Basicinfo_LOCALID">Detail</a>
+															</td>
+
+														</tr>
+													}
+												}else
+												{
+													<td>Sorry No Record Found</td>
+												}												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>

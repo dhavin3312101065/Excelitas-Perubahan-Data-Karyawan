@@ -1,0 +1,197 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Data;
+@model DataTable
+@{
+	Layout = "_LayoutAwal";
+}
+
+    <form asp-controller="Home" asp-action="SaveDataCSV" method="post" enctype="multipart/form-data">
+        <input type="file" name="postedFile"/>
+        <input type="submit" value="Import"/>
+    </form>
+    @if (Model != null)
+    {
+        <hr />
+		<hr />
+
+<h3>Data Karyawan Yang Gagal di Migrasi</h3>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+	            <div class="card-body">
+                        <div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables" class="display table table-striped table-hover" >
+								@foreach (DataRow dr in Model.Rows)
+								{
+									@*<tr> @dr[97].ToString()</tr>*@
+									@if (dr[114].ToString() == "1")
+									{
+										<thead>
+											<tr>
+												<th>Data dengan @dr.Table.Columns[0].ColumnName : @dr[0].ToString()</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												@for (int ct = 1; ct < 114; ct++)
+												{
+													@if (dr[ct].ToString() == "Not Oke")
+													{
+														string str = dr.Table.Columns[ct].ColumnName;
+														<td>
+															Isi Data pada header <a style="color:red; font-weight:bold">@str</a> Salah, Silahkan Cek Kembali
+														</td>
+													}
+
+												}
+											</tr>
+										</tbody>
+
+									}
+									else if (dr[114].ToString() == "2")
+									{
+										<thead>
+											<tr>
+												<th>@dr.Table.Columns[0].ColumnName : </th>
+												<th>@dr.Table.Columns[1].ColumnName : </th>
+												<th>@dr.Table.Columns[2].ColumnName : </th>
+												<th>@dr.Table.Columns[3].ColumnName : </th>
+												<th>@dr.Table.Columns[4].ColumnName : </th>
+												<th>@dr.Table.Columns[5].ColumnName : </th>
+												<th>@dr.Table.Columns[6].ColumnName : </th>
+												<th>@dr.Table.Columns[7].ColumnName : </th>
+												<th>@dr.Table.Columns[8].ColumnName : </th>
+												<th>@dr.Table.Columns[9].ColumnName : </th>
+												<th>@dr.Table.Columns[10].ColumnName : </th>
+												<th>@dr.Table.Columns[11].ColumnName : </th>
+												<th>@dr.Table.Columns[12].ColumnName : </th>
+												<th>@dr.Table.Columns[13].ColumnName : </th>
+												<th>@dr.Table.Columns[14].ColumnName : </th>
+												<th>@dr.Table.Columns[15].ColumnName : </th>
+												<th>@dr.Table.Columns[16].ColumnName : </th>
+												<th>@dr.Table.Columns[17].ColumnName : </th>
+												<th>@dr.Table.Columns[18].ColumnName : </th>
+												<th>@dr.Table.Columns[19].ColumnName : </th>
+												<th>@dr.Table.Columns[20].ColumnName : </th>
+												<th>@dr.Table.Columns[21].ColumnName : </th>
+												<th>@dr.Table.Columns[22].ColumnName : </th>
+												<th>@dr.Table.Columns[23].ColumnName : </th>
+												<th>@dr.Table.Columns[24].ColumnName : </th>
+												<th>@dr.Table.Columns[25].ColumnName : </th>
+												<th>@dr.Table.Columns[26].ColumnName : </th>
+												<th>@dr.Table.Columns[27].ColumnName : </th>
+												<th>@dr.Table.Columns[28].ColumnName : </th>
+												<th>@dr.Table.Columns[29].ColumnName : </th>
+												<th>@dr.Table.Columns[30].ColumnName : </th>
+												<th>@dr.Table.Columns[31].ColumnName : </th>
+												<th>@dr.Table.Columns[32].ColumnName : </th>
+												<th>@dr.Table.Columns[33].ColumnName : </th>
+												<th>@dr.Table.Columns[34].ColumnName : </th>
+												<th>@dr.Table.Columns[35].ColumnName : </th>
+												<th>@dr.Table.Columns[36].ColumnName : </th>
+												<th>@dr.Table.Columns[37].ColumnName : </th>
+												<th>@dr.Table.Columns[38].ColumnName : </th>
+												<th>@dr.Table.Columns[39].ColumnName : </th>
+												<th>@dr.Table.Columns[40].ColumnName : </th>
+												<th>@dr.Table.Columns[41].ColumnName : </th>
+												<th>@dr.Table.Columns[42].ColumnName : </th>
+												<th>@dr.Table.Columns[43].ColumnName : </th>
+												<th>@dr.Table.Columns[44].ColumnName : </th>
+												<th>@dr.Table.Columns[45].ColumnName : </th>
+												<th>@dr.Table.Columns[46].ColumnName : </th>
+												<th>@dr.Table.Columns[47].ColumnName : </th>
+												<th>@dr.Table.Columns[48].ColumnName : </th>
+												<th>@dr.Table.Columns[49].ColumnName : </th>
+												<th>@dr.Table.Columns[50].ColumnName : </th>
+												<th>@dr.Table.Columns[51].ColumnName : </th>
+												<th>@dr.Table.Columns[52].ColumnName : </th>
+												<th>@dr.Table.Columns[53].ColumnName : </th>
+												<th>@dr.Table.Columns[54].ColumnName : </th>
+												<th>@dr.Table.Columns[55].ColumnName : </th>
+												<th>@dr.Table.Columns[56].ColumnName : </th>
+												<th>@dr.Table.Columns[57].ColumnName : </th>
+												<th>@dr.Table.Columns[58].ColumnName : </th>
+												<th>@dr.Table.Columns[59].ColumnName : </th>
+												<th>@dr.Table.Columns[60].ColumnName : </th>
+												<th>@dr.Table.Columns[61].ColumnName : </th>
+												<th>@dr.Table.Columns[62].ColumnName : </th>
+												<th>@dr.Table.Columns[63].ColumnName : </th>
+												<th>@dr.Table.Columns[64].ColumnName : </th>
+												<th>@dr.Table.Columns[65].ColumnName : </th>
+												<th>@dr.Table.Columns[66].ColumnName : </th>
+												<th>@dr.Table.Columns[67].ColumnName : </th>
+												<th>@dr.Table.Columns[68].ColumnName : </th>
+												<th>@dr.Table.Columns[69].ColumnName : </th>
+												<th>@dr.Table.Columns[70].ColumnName : </th>
+												<th>@dr.Table.Columns[71].ColumnName : </th>
+												<th>@dr.Table.Columns[72].ColumnName : </th>
+												<th>@dr.Table.Columns[73].ColumnName : </th>
+												<th>@dr.Table.Columns[74].ColumnName : </th>
+												<th>@dr.Table.Columns[75].ColumnName : </th>
+												<th>@dr.Table.Columns[76].ColumnName : </th>
+												<th>@dr.Table.Columns[77].ColumnName : </th>
+												<th>@dr.Table.Columns[78].ColumnName : </th>
+												<th>@dr.Table.Columns[79].ColumnName : </th>
+												<th>@dr.Table.Columns[80].ColumnName : </th>
+												<th>@dr.Table.Columns[81].ColumnName : </th>
+												<th>@dr.Table.Columns[82].ColumnName : </th>
+												<th>@dr.Table.Columns[83].ColumnName : </th>
+												<th>@dr.Table.Columns[84].ColumnName : </th>
+												<th>@dr.Table.Columns[85].ColumnName : </th>
+												<th>@dr.Table.Columns[86].ColumnName : </th>
+												<th>@dr.Table.Columns[87].ColumnName : </th>
+												<th>@dr.Table.Columns[88].ColumnName : </th>
+												<th>@dr.Table.Columns[89].ColumnName : </th>
+												<th>@dr.Table.Columns[90].ColumnName : </th>
+												<th>@dr.Table.Columns[91].ColumnName : </th>
+												<th>@dr.Table.Columns[92].ColumnName : </th>
+												<th>@dr.Table.Columns[93].ColumnName : </th>
+												<th>@dr.Table.Columns[94].ColumnName : </th>
+												<th>@dr.Table.Columns[95].ColumnName : </th>
+												<th>@dr.Table.Columns[96].ColumnName : </th>
+												<th>@dr.Table.Columns[97].ColumnName : </th>
+												<th>@dr.Table.Columns[98].ColumnName : </th>
+												<th>@dr.Table.Columns[99].ColumnName : </th>
+												<th>@dr.Table.Columns[100].ColumnName : </th>
+												<th>@dr.Table.Columns[101].ColumnName : </th>
+												<th>@dr.Table.Columns[102].ColumnName : </th>
+												<th>@dr.Table.Columns[103].ColumnName : </th>
+												<th>@dr.Table.Columns[104].ColumnName : </th>
+												<th>@dr.Table.Columns[105].ColumnName : </th>
+												<th>@dr.Table.Columns[106].ColumnName : </th>
+												<th>@dr.Table.Columns[107].ColumnName : </th>
+												<th>@dr.Table.Columns[108].ColumnName : </th>
+												<th>@dr.Table.Columns[109].ColumnName : </th>
+												<th>@dr.Table.Columns[110].ColumnName : </th>
+												<th>@dr.Table.Columns[111].ColumnName : </th>
+												<th>@dr.Table.Columns[112].ColumnName : </th>
+												<th>@dr.Table.Columns[113].ColumnName : </th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												@for (int cr = 0; cr < 114; cr++)
+												{
+													string str = dr[cr].ToString();
+													<td>
+													@str
+													</td>									
+												}
+											</tr>
+										</tbody>
+									}
+								}	
+										</table>
+									</div>
+								</div>
+                </div>
+        </div>
+			<a asp-action="MenuAdminInput" class="btn btn-success">Back to list employee</a>
+	</div>
+	
+</div>
+
+    }

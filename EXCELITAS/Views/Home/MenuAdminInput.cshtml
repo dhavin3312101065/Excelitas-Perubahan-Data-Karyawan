@@ -1,0 +1,130 @@
+﻿@model EXCELITAS.Models.EmployeeModel
+@inject IHttpContextAccessor Accessor
+
+@{
+    ViewData["Title"] = "Menu Admin Input";
+    
+}
+
+@{
+    Layout = "_LayoutAwal";
+}
+
+
+ 
+<h4 style="color :blue", class="page-title">Welcome, You are logged in as @Accessor.HttpContext.Session.GetString("Username")</h4>
+
+@*<h3>nilai = @ViewBag.ss</h3>*@
+<br />
+@*<a class="btn btn-success " href="/Home/SaveDataInput?username=@Accessor.HttpContext.Session.GetString("Username")&role=@Accessor.HttpContext.Session.GetInt32("Role")" role="button">*@
+<a class="btn btn-success " href="../Home/SaveDataInput" role="button">
+	<span class="btn-label">
+		<i class="fa fa-plus"></i>
+	</span> Add New Employee
+</a>
+<br />
+
+<a class="btn btn-primary mb-3 mt-3" href="../Home/SaveDataCSV" role="button">
+	<span class="btn-label">
+	<i class="fa fa-bookmark"></i>
+	</span> Upload CSV</a>
+
+
+
+<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Data Employee</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables" class="display table table-striped table-hover" >
+											<thead>
+												<tr>
+													@*<th>Id</th>*@
+													<th>LOCALID</th>
+													<th>GLOBALID</th>
+													<th>FULLNAME</th>
+													<th>Gender</th>
+													<th>Employment Type</th>
+													<th>Join Date</th>
+													<th>Grade or Level</th>
+													<th>Job Title</th>
+													<th>Labor Type</th>
+													<th>Department</th>
+													<th>Supervisor Name</th>
+													<th>Keterangan</th>
+													<th>Action</th> 
+													
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+													@*<th>Id</th>*@
+													<th>LOCALID</th>
+													<th>GLOBALID</th>
+													<th>FULLNAME</th>
+													<th>Gender</th>
+													<th>Employment Type</th>
+													<th>Join Date</th>
+													<th>Grade or Level</th>
+													<th>Job Title</th>
+													<th>Labor Type</th>
+													<th>Department</th>
+													<th>Supervisor Name</th>
+													<th>Keterangan</th>
+													<th>Action</th>
+													
+												</tr>
+											</tfoot>
+											<tbody>
+												@if (@Model.EmployeeList.Count > 0)
+												{
+													foreach (var item in @Model.EmployeeList)
+													{
+														<tr>
+															@*<td>@item.Id</td>*@
+															<td>@item.Basicinfo_LOCALID</td>
+															<td>@item.Basicinfo_GLOBALID</td>
+															<td>@item.Basicinfo_FULLNAME</td>
+															<td>@item.Basicinfo_Gender</td>
+															<td>@item.Employmentstatus_EmploymentType</td>
+															<td>@item.Employmentstatus_JoinDate</td>
+															<td>@item.Jobprofile_GradeORLevel</td>
+															<td>@item.Jobprofile_JobTitle</td>
+															<td>@item.Jobprofile_LaborType</td>
+															<td>@item.Jobprofile_Division</td>
+															<td>@item.Jobprofile_SupervisorName</td>
+
+															
+
+															@if (@item.AdminApproval == -1)
+															{
+																<td style="color : red">Has been Rejected</td>
+
+															} else{
+															<td style="color : darkorange">Not yet approved</td>
+															}
+
+															<td>
+																<a href="../Home/Detail/?IdEm=@item.Id">Detail</a>&nbsp;|&nbsp;
+																<a href="../Home/Update/?IdEm=@item.Id">Update</a>&nbsp;|&nbsp;
+																<a href="../Home/Delete/?IdEm=@item.Id">Delete</a>&nbsp;
+															</td>
+
+														</tr>
+													}
+												}else
+												{
+													<td>Sorry No Record Found</td>
+												}
+												
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+</div>

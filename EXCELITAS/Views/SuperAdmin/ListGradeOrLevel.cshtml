@@ -1,0 +1,77 @@
+﻿@model EXCELITAS.Models.GradeOrLevelModel
+@inject IHttpContextAccessor Accessor
+
+@{
+    Layout = "_LayoutSuperAdmin";
+}
+
+
+<h4 style="color :blue", class="page-title">Welcome, You are logged in as @Accessor.HttpContext.Session.GetString("Username")</h4>
+
+@*<h3>nilai = @ViewBag.ss</h3>*@
+<br />
+@*<a class="btn btn-success " href="/Home/SaveDataInput?username=@Accessor.HttpContext.Session.GetString("Username")&role=@Accessor.HttpContext.Session.GetInt32("Role")" role="button">*@
+<a class="btn btn-success " href="../SuperAdmin/SaveGradeOrLevel" role="button">
+	<span class="btn-label">
+		<i class="fa fa-plus"></i>
+	</span> Add New Grade Level
+</a>
+<br />
+<br />
+
+
+
+
+<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Data Grade or Level</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables" class="display table table-striped table-hover">
+											<thead>
+												<tr>
+													@*<th>Id Grade Or Level</th>*@
+													<th>Grade Or Level</th>
+													<th>Action</th> 
+													
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+													@*<th>Id Grade Or Level</th>*@
+													<th>Grade Or Level</th>
+													<th>Action</th>
+													
+												</tr>
+											</tfoot>
+											
+											<tbody>
+												@if (@Model.GradeOrLevelList.Count > 0)
+												{
+													foreach (var item in @Model.GradeOrLevelList.OrderBy(m=>m.Id_GradeLevel))
+													{
+														<tr>
+															@*<td>@item.Id_GradeLevel</td>*@
+															<td>@item.Nama_GradeLevel</td>
+															<td>
+																<a href="../SuperAdmin/Update/?IdGrl=@item.Id_GradeLevel">Update</a>&nbsp;|&nbsp;
+																<a href="../SuperAdmin/Delete/?IdGrl=@item.Id_GradeLevel">Delete</a>&nbsp;
+															</td>
+
+														</tr>
+													}
+												}
+												else
+												{
+												<td>Sorry No Record Found</td>
+												}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+</div>

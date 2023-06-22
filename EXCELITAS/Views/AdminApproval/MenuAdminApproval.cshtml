@@ -1,0 +1,114 @@
+﻿@model EXCELITAS.Models.EmployeeModel
+@inject IHttpContextAccessor Accessor
+@{
+    ViewData["Title"] = "Menu Admin Approval";
+
+}
+
+@{
+	Layout = "_LayoutAdminApproval";
+}
+
+
+<h4 style="color :blue" , class="page-title">Welcome, You are logged in as @Accessor.HttpContext.Session.GetString("Username")</h4>
+<br />
+
+<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+								<h4 class="card-title">Employee List Pengajuan</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables" class="display table table-striped table-hover" >
+											<thead>
+												<tr>
+													<th>LOCAL ID</th>
+													<th>GLOBAL ID</th>
+													<th>FULLNAME</th>
+													<th>Gender</th>
+													<th>Employment Type</th>
+													<th>Join Date</th>
+													<th>Grade or Level</th>
+													<th>Job Title</th>
+													<th>Labor Type</th>
+													<th>Department</th>
+													<th>Supervisor Name</th>
+													<th>Keterangan</th>
+													<th>Action</th>					
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+													<th>LOCAL ID</th>
+													<th>GLOBAL ID</th>
+													<th>FULLNAME</th>
+													<th>Gender</th>
+													<th>Employment Type</th>
+													<th>Join Date</th>
+													<th>Grade or Level</th>
+													<th>Job Title</th>
+													<th>Labor Type</th>
+													<th>Department</th>
+													<th>Supervisor Name</th>
+													<th>Keterangan</th>
+													<th>Action</th>
+													
+												</tr>
+											</tfoot>
+											<tbody>
+												@if (@Model.EmployeeList.Count > 0)
+												{
+													foreach (var item in @Model.EmployeeList)
+													{
+														<tr>
+															<td>@item.Basicinfo_LOCALID</td>
+															<td>@item.Basicinfo_GLOBALID</td>
+															<td>@item.Basicinfo_FULLNAME</td>
+															<td>@item.Basicinfo_Gender</td>
+															<td>@item.Employmentstatus_EmploymentType</td>
+															<td>@item.Employmentstatus_JoinDate</td>
+															<td>@item.Jobprofile_GradeORLevel</td>
+															<td>@item.Jobprofile_JobTitle</td>
+															<td>@item.Jobprofile_LaborType</td>
+															<td>@item.Jobprofile_Department</td>
+															<td>@item.Jobprofile_SupervisorName</td>
+
+															@if (item.AdminApproval == 0)
+															{
+
+																<td> Data Karyawan Baru </td>
+															}
+															else
+															{
+																<td> Data Karyawan Lama </td>
+															}
+
+															<td>
+																@if (item.AdminApproval == 0)
+																{
+
+																	<a href="../AdminApproval/DetailApprovalInputBaru/?IdEm=@item.Id">Detail For Approval</a>
+																}
+																else
+																{
+																	<a href="../AdminApproval/DetailApproval/?localId=@item.Basicinfo_LOCALID">Detail For Approval</a>
+																}
+															</td>
+
+														</tr>
+													}
+												}else
+												{
+													<td>Sorry No Record Found</td>
+												}
+												
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+</div>

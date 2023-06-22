@@ -1,0 +1,1199 @@
+﻿@model EXCELITAS.Models.Employee
+
+@{
+    Layout = "_LayoutAwal";
+}
+
+@{
+var imagePath = @Model.Basicinfo_PHOTO;
+}
+
+       @* @ViewBag.yearJoinDate*@
+        <div class="card mt-5">
+            <div class="card-header bg-secondary text-white">Form Detail Data</div>
+            <div class="card-body">
+               @using (Html.BeginForm("Detail", "Home", FormMethod.Post))
+                {
+                
+                    <ul class="nav nav-tabs">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#BasicInfo" role="tab" data-toggle="tab">ID Basic Info</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#EmploymentStatus" role="tab" data-toggle="tab">Employment Status</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#JobProfile" role="tab" data-toggle="tab">Job Profile</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#Recruitment" role="tab" data-toggle="tab">Recruitment</a>
+                          </li>
+                          <li class="nav-item">
+                        <a class="nav-link" href="#Education" role="tab" data-toggle="tab">Education</a>
+                          </li>
+                           <li class="nav-item">
+                        <a class="nav-link" href="#IdentityandAccount" role="tab" data-toggle="tab">Identity and Account</a>
+                          </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="#ContactandAddress" role="tab" data-toggle="tab">Contact and Address</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#FamilyDetails" role="tab" data-toggle="tab">Family Details</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#EmergencyContact" role="tab" data-toggle="tab">Emergency Contact</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#AccessPropAndMembership" role="tab" data-toggle="tab">Access Properties and Membership</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#ExitInformation" role="tab" data-toggle="tab">Exit Information</a>
+                          </li>
+                      </ul>
+
+                    <div class="tab-content">
+                        <!-- Basic Info tab start-->
+                        <div role="tabpanel1" class="tab-pane show fade active" id="BasicInfo">
+                            <div class="mb-3">
+                                <h3>ID Basic Info</h3>
+                            </div>
+
+                            @Html.HiddenFor(m => m.Id)
+
+                            <div class="mb-3">
+                              <label for="Basicinfo_LOCALID" class="form-label">LOCAL ID</label>
+                              @Html.TextBoxFor(m=>m.Basicinfo_LOCALID, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Basicinfo_GLOBALID" class="form-label">GLOBAL ID</label>
+                                @Html.TextBoxFor(m=>m.Basicinfo_GLOBALID, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Basicinfo_FULLNAME" class="form-label">Full Name</label>
+                                @Html.TextBoxFor(m=>m.Basicinfo_FULLNAME, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Basicinfo_PHOTO" class="form-label">Photo : </label>                               
+                            </div>
+
+                            @if(imagePath != null)
+                            {
+                                <div style="padding:4px;">                      
+                                <img src="~/images/@imagePath" alt="Photo" width="200px" />
+                             </div>
+                            }else {
+                             <p style="color:red">                      
+                               No Image
+                             </p>
+                            }
+                            
+
+                            <div class="mb-3">
+                                <label for="Basicinfo_Gender" class="form-label">Gender</label>
+                                @Html.DropDownListFor(m=>m.Basicinfo_Gender, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "FEMALE", Value="FEMALE"},
+                                new SelectListItem() {Text = "MALE", Value="MALE"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Basicinfo_PlaceofBirth" class="form-label">Place Of Birth</label>
+                                @Html.TextBoxFor(m=>m.Basicinfo_PlaceofBirth, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                             <div class="mb-3 mt-3">
+                                <label for="Basicinfo_DateofBirth" class="form-label">Date of Birth</label>
+                                @Html.TextBoxFor(m => m.Basicinfo_DateofBirth, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})                                
+                            </div>
+
+                             <div class="mb-3">
+                                <label for="Basicinfo_Religion" class="form-label">Religion</label>
+                                @Html.DropDownListFor(m=>m.Basicinfo_Religion, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "MOSLEM", Value="MOSLEM"},
+                                new SelectListItem() {Text = "CHRISTIAN", Value="CHRISTIAN"},
+                                new SelectListItem() {Text = "CATHOLIC", Value="CATHOLIC"},
+                                new SelectListItem() {Text = "BUDHA", Value="BUDHA"},
+                                new SelectListItem() {Text = "HINDU", Value="HINDU"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+
+                              <div class="mb-3">
+                                <label for="Basicinfo_Nationality" class="form-label">Nationality</label>
+                                @Html.DropDownListFor(m=>m.Basicinfo_Nationality, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "INDONESIA", Value="INDONESIA"},
+                                new SelectListItem() {Text = "SINGAPURA", Value="SINGAPURA"},
+                                new SelectListItem() {Text = "MALAYSIA", Value="MALAYSIA"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+                        </div>
+                        <!-- Basic Info tab End-->
+
+                        <!-- Employment Type tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="EmploymentStatus">
+
+                             <div class="mt-3 mb-3">
+								<h3>Employment Status</h3>
+							  </div>
+
+							 <div class="mb-3">
+                                <label for="Employmentstatus_EmploymentType" class="form-label">Employment type</label>
+                                @Html.DropDownListFor(m=>m.Employmentstatus_EmploymentType, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "CONTRACT", Value="CONTRACT"},
+                                new SelectListItem() {Text = "PERMANENT", Value="PERMANENT"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+							<div class="mb-3">
+                                <label for="Employmentstatus_JoinDate" class="form-label">Join Date</label>
+                               @Html.TextBoxFor(m => m.Employmentstatus_JoinDate, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Employmentstatus_C1START" class="form-label">C1 START</label>
+                                @Html.TextBoxFor(m => m.Employmentstatus_C1START, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3">
+                                <label for="Employmentstatus_C1END" class="form-label">C1 END</label>
+                                @Html.TextBoxFor(m => m.Employmentstatus_C1END, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Employmentstatus_C2START" class="form-label">C2 START</label>
+                                @Html.TextBoxFor(m => m.Employmentstatus_C2START, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Employmentstatus_C2END" class="form-label">C2 END</label>
+                                @Html.TextBoxFor(m => m.Employmentstatus_C2END, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Employmentstatus_C3START" class="form-label">C3 START</label>
+                                @Html.TextBoxFor(m => m.Employmentstatus_C3START, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Employmentstatus_C3END" class="form-label">C3 END</label>
+                                @Html.TextBoxFor(m => m.Employmentstatus_C3END, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Employmentstatus_PERMANENTSTARTDATE" class="form-label">PERMANENT START DATE</label>
+                                @Html.TextBoxFor(m => m.Employmentstatus_PERMANENTSTARTDATE, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							 <div class="mb-3">
+                                <label for="Employmentstatus_EMPLOYEESTATUS" class="form-label">Employee Status</label>
+                                @Html.DropDownListFor(m=>m.Employmentstatus_EMPLOYEESTATUS, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "ACTIVE", Value="ACTIVE"},
+                                new SelectListItem() {Text = "NON ACTIVE", Value="NON ACTIVE"}
+                                }, new { @class="form-control", @disabled = "disabled"}) 
+                            </div>
+
+							 <div class="mb-3">
+                                <label for="Employmentstatus_TOTALSERVICEYEARSBYJOIN" class="form-label">Total Services By Join</label>
+                                @Html.TextBoxFor(m=>m.Employmentstatus_TOTALSERVICEYEARSBYJOIN, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3">
+                                <label for="Employmentstatus_TOTALSERVICEYEARSBYPERMANENT" class="form-label">Total Service Years By Permanent</label>
+                                @Html.TextBoxFor(m=>m.Employmentstatus_TOTALSERVICEYEARSBYPERMANENT, new{@class="form-control", @readonly="readonly"})
+                            </div>
+                        </div>
+                        <!-- Employment Type tab end-->
+
+                        <!-- Job Profile tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="JobProfile">
+
+                            <div class="mt-3 mb-3">
+							<h3>Job Profile</h3>
+						    </div>
+                          
+						   <div class="mb-3">
+                                <label for="Jobprofile_GradeORLevel" class="form-label">Grade / Level</label>
+                                @Html.DropDownListFor(m => m.Jobprofile_GradeORLevel, ViewBag.listgradelevel as SelectList, "--Select Grade/Level", new { @class = "form-control", @disabled = "disabled" })
+                            </div>
+
+                             <div class="mb-3">
+                               <label for="Jobprofile_JobTitle" class="form-label">Job Title</label>
+                               @Html.DropDownListFor(m=>m.Jobprofile_JobTitle, new SelectList(" "), new { @class="form-control", @disabled = "disabled"})      
+                           </div>
+
+
+                           <div class="mb-3">
+                                <label for="Jobprofile_LaborType" class="form-label">Labor Type</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_LaborType, new SelectList(" "), new { @class="form-control", @disabled = "disabled"})
+                           </div>
+
+                            <div class="mb-3">
+                                 <label for="Jobprofile_LaborClass" class="form-label">Labor Class</label>
+                                 @Html.DropDownListFor(m=>m.Jobprofile_LaborClass, new SelectList(" "), new { @class="form-control", @disabled = "disabled"})
+                            </div>
+						  
+						  @*<div class="mb-3">
+								<label for="Jobprofile_JobTitle" class="form-label">Job Title</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_JobTitle, new SelectListItem[] {
+                                new SelectListItem() {Text = "Skilled Operator", Value="Skilled Operator"},
+                                new SelectListItem() {Text = "Supervisor II", Value="Supervisor II"},
+								new SelectListItem() {Text = "Line Leader II", Value="Line Leader II"},
+								new SelectListItem() {Text = "4", Value="4"},
+								new SelectListItem() {Text = "5", Value="5"},
+								new SelectListItem() {Text = "Sealer Supervisor 2", Value="Sealer Supervisor 2"},
+								new SelectListItem() {Text = "Utility Operator II", Value="Utility Operator II"},
+								new SelectListItem() {Text = "Snr Eng I", Value="Snr Eng I"},
+								new SelectListItem() {Text = "Senior Manager", Value="Senior Manager"},
+								new SelectListItem() {Text = "Assistant Supervisor I", Value="Assistant Supervisor I"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+						  </div>*@
+
+                          @*<div class="mb-3">
+						  		<label for="Jobprofile_LaborType" class="form-label">Labor Type</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_LaborType, new SelectListItem[] {
+                                new SelectListItem() {Text = "DL", Value="DL"},
+                                new SelectListItem() {Text = "IDL", Value="IDL"},								
+                                }, new { @class="form-control", @disabled = "disabled"})
+						  </div>*@
+						  
+						   @*<div class="mb-3">
+						  		<label for="Jobprofile_LaborClass" class="form-label">Labor Class</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_LaborClass, new SelectListItem[] {
+                                new SelectListItem() {Text = "DL", Value="DL"},
+                                new SelectListItem() {Text = "EXECUTIVE", Value="EXECUTIVE"},
+								new SelectListItem() {Text = "STAFF", Value="STAFF"}								
+                                }, new { @class="form-control", @disabled = "disabled"})
+						  </div>*@
+						  
+						 @* <div class="mb-3">
+						  		<label for="Jobprofile_ProductivityType" class="form-label">Productivity Type</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_ProductivityType, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "DIRECT", Value="DIRECT"},
+                                new SelectListItem() {Text = "DIRECT SUPPORT", Value="DIRECT SUPPORT"},
+                                new SelectListItem() {Text = "INDIRECT", Value="INDIRECT"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+						  </div>*@
+
+                          <div class="mb-3">
+                                <label for="Jobprofile_ProductivityType" class="form-label">Productivity Type</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_ProductivityType, ViewBag.listProductivityType as SelectList, "--Select Productivity Type--", new { @class="form-control", @disabled = "disabled"})
+                          </div>
+						  
+						  @*<div class="mb-3">
+						  		<label for="Jobprofile_JobFunction" class="form-label">Job Function</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_JobFunction, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "FINANCE", Value="FINANCE"},
+                                new SelectListItem() {Text = "HUMAN RESOURCES", Value="HUMAN RESOURCES"},
+								new SelectListItem() {Text = "IT", Value="IT"},
+								new SelectListItem() {Text = "OPERATIONS", Value="OPERATIONS"},
+								new SelectListItem() {Text = "SERVICE", Value="SERVICE"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+						  </div>*@
+
+                          <div class="mb-3">
+						  	    <label for="Jobprofile_JobFunction" class="form-label">Job Function</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_JobFunction, ViewBag.listJobFunction as SelectList, "--Select Job Function--", new { @class="form-control", @disabled = "disabled"})
+						  </div>
+						  
+						  <div class="mb-3">
+						  		<label for="Jobprofile_WorkCitizenship" class="form-label">Work Citizenship</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_WorkCitizenship, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "INDONESIA", Value="INDONESIA"},
+                                new SelectListItem() {Text = "NON INDONESIA", Value="NON INDONESIA"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+						  </div>
+						  
+						 		  
+						  
+						  @*<div class="mb-3">
+						  		<label for="Jobprofile_Division" class="form-label">Division</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_Division, new SelectListItem[] {
+                                new SelectListItem() {Text = "DETECTION", Value="DETECTION"},
+                                new SelectListItem() {Text = "QA", Value="QA"}								
+                                }, new { @class="form-control", @disabled = "disabled"})
+						  </div>
+						  
+						  <div class="mb-3">
+						  		<label for="Jobprofile_CostCenter" class="form-label">Cost Center</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_CostCenter, new SelectListItem[] {
+                                new SelectListItem() {Text = "DETECTION", Value="DETECTION"},
+                                new SelectListItem() {Text = "QA", Value="QA"}								
+                                }, new { @class="form-control", @disabled = "disabled"})
+						  </div>
+
+                           <div class="mb-3">
+						  		<label for="Jobprofile_Department" class="form-label">Department</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_Department, new SelectListItem[] {
+                                new SelectListItem() {Text = "MANAGEMENT/ADM LEADERSHIP", Value="MANAGEMENT/ADM LEADERSHIP"},
+                                new SelectListItem() {Text = "FACILITIES", Value="FACILITIES"}								
+                                }, new { @class="form-control", @disabled = "disabled"})
+                           </div>*@
+
+                            <div class="mb-3">
+                                <label for="Jobprofile_Division" class="form-label">Department</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_Division, ViewBag.listdivision as SelectList, "--Select Department--", new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Jobprofile_CostCenter" class="form-label">Cost Center</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_CostCenter, new SelectList(" "), "--Select Cost Center--", new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Jobprofile_Department" class="form-label">Job Post</label>
+                                @Html.DropDownListFor(m=>m.Jobprofile_Department, new SelectList(" "), "--Select Job Post--", new { @class="form-control", @disabled = "disabled"})
+                            </div>
+						  
+						
+							@*<div class="mb-3">
+									<label for="Jobprofile_WorkLotORPlant" class="form-label">Work Lot / Plant</label>
+                                    @Html.DropDownListFor(m=>m.Jobprofile_WorkLotORPlant, new SelectListItem[] {
+                                    new SelectListItem() {Text = "-", Value="-"},
+                                    new SelectListItem() {Text = "Lot 207", Value="Lot 207"},
+                                    new SelectListItem() {Text = "Lot 209", Value="Lot 209"},
+                                    new SelectListItem() {Text = "Lot 238", Value="Lot 238"},
+                                    new SelectListItem() {Text = "REMOTE", Value="REMOTE"},
+                                    new SelectListItem() {Text = "DORMITORY", Value="DORMITORY"}
+                                    }, new { @class="form-control", @disabled = "disabled"})
+							</div>*@
+							
+                            <div class="mb-3">
+								<label for="Jobprofile_WorkLotORPlant" class="form-label">Work Lot/Plant</label>
+                                @*@Html.DropDownListFor(m=>m.Jobprofile_Division, ViewBag.listdivision as SelectList, "--Select Division--", new { @class="form-control"})*@
+                                @Html.DropDownListFor(m=>m.Jobprofile_WorkLotORPlant, ViewBag.listWorkLotOrPlant as SelectList, "--Select Work Lot/Plant--", new { @class="form-control", @disabled = "disabled"})
+						    </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Jobprofile_SupervisorID" class="form-label">Supervisor ID</label>
+                                @Html.TextBoxFor(m=>m.Jobprofile_SupervisorID, new{@class="form-control", @readonly="readonly"})
+                            </div>
+							
+							<div class="mb-3 mt-3">
+                                <label for="Jobprofile_SupervisorName" class="form-label">Supervisor Name</label>
+                                @Html.TextBoxFor(m=>m.Jobprofile_SupervisorName, new{@class="form-control", @readonly="readonly"})
+                            </div>
+							
+							<div class="mb-3 mt-3">
+                                <label for="Jobprofile_ShiftPattern" class="form-label">Shift Pattern</label>
+                                @Html.TextBoxFor(m=>m.Jobprofile_ShiftPattern, new{@class="form-control", @readonly="readonly"})
+                            </div>
+							
+                        </div>
+                        <!-- Job Profile tab end-->
+
+                        <!-- Recruitment tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="Recruitment">
+                            <div class="mt-3 mb-3">
+							    <h3>Recruitment</h3>
+						    </div>
+						  
+                            <div class="mb-3">
+							    <label for="Recruitment_MethodofRecruitment" class="form-label">Method of Recruitment</label>
+                                @Html.DropDownListFor(m=>m.Recruitment_MethodofRecruitment, ViewBag.ListMethodOfRecruitment as SelectList, "--Select Method of Recruitment--", new { @class="form-control", @disabled = "disabled"})
+							</div>
+							
+							 <div class="mb-3">
+								<label for="Recruitment_Source" class="form-label">Source</label>
+                                @Html.DropDownListFor(m=>m.Recruitment_Source, new SelectList(" "), "--Select Source--", new { @class="form-control", @disabled = "disabled"})
+							 </div>
+
+						  	@*<div class="mb-3">
+									<label for="Recruitment_MethodofRecruitment" class="form-label">Method of Recruitment</label>
+									@Html.DropDownListFor(m=>m.Recruitment_MethodofRecruitment, new SelectListItem[] {
+									new SelectListItem() {Text = "-"},
+									new SelectListItem() {Text = "LOCAL", Value="LOCAL"},
+									new SelectListItem() {Text = "AKAD", Value="AKAD"}								
+									}, new { @class="form-control", @disabled = "disabled"})
+							</div>
+							
+							<div class="mb-3">
+									<label for="Recruitment_Source" class="form-label">Source</label>
+									@Html.DropDownListFor(m=>m.Recruitment_Source, new SelectListItem[] {
+									new SelectListItem() {Text = "-"},
+									new SelectListItem() {Text = "BULLETIN BOARD", Value="BULLETIN BOARD"},
+									new SelectListItem() {Text = "LINKEDIN", Value="LINKEDIN"},		
+									new SelectListItem() {Text = "JOBSTREET", Value="JOBSTREET"},
+									new SelectListItem() {Text = "NEWSPAPER", Value="NEWSPAPER"},
+									new SelectListItem() {Text = "AGENCY", Value="AGENCY"}
+									
+									}, new { @class="form-control", @disabled = "disabled"})
+							</div>*@
+							
+							
+							<div class="mb-3 mt-3">
+                                <label for="Recruitment_RecruitmentPlace" class="form-label">Recruitment Place</label>
+                                @Html.TextBoxFor(m=>m.Recruitment_RecruitmentPlace, new{@class="form-control", @readonly="readonly"})
+                            </div>
+							
+							<div class="mb-3 mt-3">
+                                <label for="Recruitment_RequisitionNumber" class="form-label">Requisition Number</label>
+                                @Html.TextBoxFor(m=>m.Recruitment_RequisitionNumber, new{@class="form-control", @readonly="readonly"})
+                            </div>
+							
+                        </div>
+                        <!-- Recruitment tab end-->
+
+                        <!-- Education tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="Education">
+                            <div class="mt-3 mb-3">
+                                <h3>Education</h3>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Education_Education1" class="form-label">Education 1</label>
+                                @Html.DropDownListFor(m=>m.Education_Education1, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "SENIOR HIGH SCHOOL", Value="SENIOR HIGH SCHOOL"},
+                                new SelectListItem() {Text = "VOCATIONAL HIGH SCHOOL", Value="VOCATIONAL HIGH SCHOOL"},
+                                new SelectListItem() {Text = "DIPLOMA III", Value="DIPLOMA III"},
+                                new SelectListItem() {Text = "DIPLOMA IV", Value="DIPLOMA IV"},
+                                new SelectListItem() {Text = "BACHELOR DEGREE", Value="BACHELOR DEGREE"},
+                                new SelectListItem() {Text = "MASTER DEGREE", Value="MASTER DEGREE"},
+                                new SelectListItem() {Text = "DOCTORATE DEGREE", Value="DOCTORATE DEGREE"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="Education_FieldofStudy1" class="form-label">Field of Study 1</label>
+                                @Html.TextBoxFor(m=>m.Education_FieldofStudy1, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="Education_InstitutionName1" class="form-label">Institution Name 1</label>
+                                @Html.TextBoxFor(m=>m.Education_InstitutionName1, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="Education_YearofGraduate1" class="form-label">Year of Graduate 1</label>
+                                @Html.TextBoxFor(m=>m.Education_YearofGraduate1, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Education_Education2" class="form-label">Education 2</label>
+                                @Html.DropDownListFor(m=>m.Education_Education2, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value="-"},
+                                new SelectListItem() {Text = "DIPLOMA III", Value="DIPLOMA III"},
+                                new SelectListItem() {Text = "DIPLOMA IV", Value="DIPLOMA IV"},
+                                new SelectListItem() {Text = "BACHELOR DEGREE", Value="BACHELOR DEGREE"},
+                                new SelectListItem() {Text = "DIPLOMA IV", Value="DIPLOMA IV"},
+                                new SelectListItem() {Text = "MASTER DEGREE", Value="MASTER DEGREE"},
+                                new SelectListItem() {Text = "DOCTORATE DEGREE", Value="DOCTORATE DEGREE"}
+
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="Education_FieldofStudy2" class="form-label">Field of Study 2</label>
+                                @Html.TextBoxFor(m=>m.Education_FieldofStudy2, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="Education_InstitutionName2" class="form-label">Institution Name 2</label>
+                                @Html.TextBoxFor(m=>m.Education_InstitutionName2, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="Education_YearofGraduate2" class="form-label">Year of Graduate 2</label>
+                                @Html.TextBoxFor(m=>m.Education_YearofGraduate2, new{@class="form-control", @readonly="readonly"})
+                            </div>
+                        </div>
+                        <!-- Education tab end-->
+
+
+                        <!-- IdentityAndAccount tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="IdentityandAccount">
+                            <div class="mt-3 mb-3">
+							    <h3>Identity and Account</h3>
+						    </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="IdentityandAccount_NIK" class="form-label">NIK</label>
+                                @Html.TextBoxFor(m=>m.IdentityandAccount_NIK, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="IdentityandAccount_NoBPJSKes" class="form-label">No. BPJS Kes</label>
+                                @Html.TextBoxFor(m=>m.IdentityandAccount_NoBPJSKes, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="IdentityandAccount_NoBPJSTK" class="form-label">No. BPJS TK</label>
+                                @Html.TextBoxFor(m=>m.IdentityandAccount_NoBPJSTK, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="IdentityandAccount_NoPassport" class="form-label">No. Passport</label>
+                                @Html.TextBoxFor(m=>m.IdentityandAccount_NoPassport, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="IdentityandAccount_BankAccount" class="form-label">Bank Account</label>
+                                @Html.TextBoxFor(m=>m.IdentityandAccount_BankAccount, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="IdentityandAccount_NoNPWP" class="form-label">No. NPWP</label>
+                                @Html.TextBoxFor(m=>m.IdentityandAccount_NoNPWP, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="IdentityandAccount_TaxStatus" class="form-label">Tax Status</label>
+                                @Html.DropDownListFor(m=>m.IdentityandAccount_TaxStatus, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+                                new SelectListItem() {Text = "K/0", Value="K/0"},
+                                new SelectListItem() {Text = "K/1", Value="K/1"},
+                                new SelectListItem() {Text = "K/2", Value="K/2"},
+                                new SelectListItem() {Text = "K/3", Value="K/3"},
+                                new SelectListItem() {Text = "TK/0", Value="TK/0"},
+                                new SelectListItem() {Text = "TK/1", Value="TK/1"},
+                                new SelectListItem() {Text = "TK/2", Value="TK/2"},
+                                new SelectListItem() {Text = "TK/3", Value="TK/3"},
+                                new SelectListItem() {Text = "K/1/0", Value="K/1/0"},
+                                new SelectListItem() {Text = "K/1/1", Value="K/1/1"},
+                                new SelectListItem() {Text = "K/1/2", Value="K/1/2"},
+                                new SelectListItem() {Text = "K/1/3", Value="K/1/3"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+                        </div>
+                        <!-- IdentityAndAccount tab end-->
+
+                        <!-- ContactandAddress tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="ContactandAddress">
+                            <div class="mt-3 mb-3">
+                                <h3>Contact And Address</h3>
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="EmergencyContact_MobilePhoneNo" class="form-label">Mobile Phone No.</label>
+                                @Html.TextBoxFor(m=>m.EmergencyContact_MobilePhoneNo, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_PersonalEmailAccount" class="form-label">Personal Email Account</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_PersonalEmailAccount, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_CurrentAddress" class="form-label">Current Address</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_CurrentAddress, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_CurrentRegionKelurahan" class="form-label">Current Region (Kelurahan)</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_CurrentRegionKelurahan, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_CurrentRegionKecamatan" class="form-label">Current Region (Kecamatan)</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_CurrentRegionKecamatan, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_CurrentCity" class="form-label">Current City</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_CurrentCity, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_KTPAddress" class="form-label">KTP Address</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_KTPAddress, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_KTPDistrict1Kelurahan" class="form-label">KTP District 1 (Kelurahan)</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_KTPDistrict1Kelurahan, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_KTPDistrict2Kecamatan" class="form-label">KTP District 2 (Kecamatan)</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_KTPDistrict2Kecamatan, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_KTPCity" class="form-label">KTP City</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_KTPCity, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_HometownAddress" class="form-label">Hometown Address</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_HometownAddress, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_HowetownCity" class="form-label">Howetown City</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_HowetownCity, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_DormitoryStatus" class="form-label">Dormitory Status</label>
+                                @Html.DropDownListFor(m=>m.ContactandAddress_DormitoryStatus, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value ="-"},
+								new SelectListItem() {Text = "YES", Value="YES"},
+								new SelectListItem() {Text = "NO", Value="NO"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="ContactandAddress_DormitoryNo" class="form-label">Dormitory No.</label>
+                                @Html.TextBoxFor(m=>m.ContactandAddress_DormitoryNo, new{@class="form-control", @readonly="readonly"})
+                            </div>
+                        </div>
+                        <!-- ContactandAddress tab end-->
+
+                        <!-- FamilyDetails tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="FamilyDetails">
+                            <div class="mt-3 mb-3">
+							    <h3>Family Details</h3>
+						    </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="FamilyDetails_KKNo" class="form-label">KK No.</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_KKNo, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="FamilyDetails_MarritalStatus" class="form-label">Marital Status</label>
+                                @Html.DropDownListFor(m=>m.FamilyDetails_MarritalStatus, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+                                new SelectListItem() {Text = "SINGLE", Value="SINGLE"},
+                                new SelectListItem() {Text = "MARRIED", Value="MARRIED"},
+                                new SelectListItem() {Text = "WIDOWED", Value="WIDOWED"},
+                                new SelectListItem() {Text = "DIVORCED", Value="DIVORCED"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="FamilyDetails_SpouseName" class="form-label">Spouse Name</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_SpouseName, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="FamilyDetails_NoOfChildren" class="form-label">No. Of Children</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_NoOfChildren, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_1" class="form-label">Children Name #1</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_1, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_1" class="form-label">Date Of Birth #1</label>
+                                @*@Html.TextBoxFor(m=>m.FamilyDetails_DateOfBirth_1, new{@class="form-control", type="date"})*@
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_1, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_2" class="form-label">Children Name #2</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_2, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_2" class="form-label">Date Of Birth #2</label>
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_2, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_3" class="form-label">Children Name #3</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_3, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_3" class="form-label">Date Of Birth #3</label>                 
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_3, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_4" class="form-label">Children Name #4</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_4, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_4" class="form-label">Date Of Birth #4</label>
+                        @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_4, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_5" class="form-label">Children Name #5</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_5, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_5" class="form-label">Date Of Birth #5</label>
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_5, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_6" class="form-label">Children Name #6</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_6, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_6" class="form-label">Date Of Birth #6</label>
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_6, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_7" class="form-label">Children Name #7</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_7, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_7" class="form-label">Date Of Birth #7</label>
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_7, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_8" class="form-label">Children Name #8</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_8, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_8" class="form-label">Date Of Birth #8</label>
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_8, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_9" class="form-label">Children Name #9</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_9, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_9" class="form-label">Date Of Birth #9</label>
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_9, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_ChildrenName_10" class="form-label">Children Name #10</label>
+                                @Html.TextBoxFor(m=>m.FamilyDetails_ChildrenName_10, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <label for="FamilyDetails_DateOfBirth_10" class="form-label">Date Of Birth #10</label>
+                                @Html.TextBoxFor(m => m.FamilyDetails_DateOfBirth_10, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+                        </div>
+                         <!-- FamilyDetails tab end-->
+
+                        <!-- EmergencyContact tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="EmergencyContact">
+                            <div class="mt-3 mb-3">
+							    <h3>Emergency Contact</h3>
+						    </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="EmergencyContact_Name" class="form-label">Name</label>
+                                @Html.TextBoxFor(m=>m.EmergencyContact_Name, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="EmergencyContact_Relationship" class="form-label">Relationship</label>
+                                @Html.TextBoxFor(m=>m.EmergencyContact_Relationship, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="EmergencyContact_MobilePhoneNo" class="form-label">Mobile Phone No.</label>
+                                @Html.TextBoxFor(m=>m.EmergencyContact_MobilePhoneNo, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="EmergencyContact_CurrentAddress" class="form-label">Current Address</label>
+                                @Html.TextBoxFor(m=>m.EmergencyContact_CurrentAddress, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="EmergencyContact_CurrentCity" class="form-label">Current City</label>
+                                @Html.TextBoxFor(m=>m.EmergencyContact_CurrentCity, new{@class="form-control", @readonly="readonly"})
+                            </div>
+                        </div>
+                        <!-- EmergencyContact tab end-->
+
+                        <!-- AccessPropAndMembership tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="AccessPropAndMembership">
+                       		<div class="mt-3 mb-3">
+							    <h3>Access, Properties and Membership</h3>
+						    </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_WorkEmailAccount" class="form-label">Work Email Account</label>
+                                @Html.TextBoxFor(m=>m.Access_PropertiesandMembership_WorkEmailAccount, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_ProximityCardID" class="form-label">Proximity Card ID</label>
+                                @Html.TextBoxFor(m=>m.Access_PropertiesandMembership_ProximityCardID, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_AccessDoorID" class="form-label">Access Door ID</label>
+                                @Html.TextBoxFor(m=>m.Access_PropertiesandMembership_AccessDoorID, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_ParkingAccess" class="form-label">Parking Access</label>
+                                @Html.DropDownListFor(m=>m.Access_PropertiesandMembership_ParkingAccess, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+								new SelectListItem() {Text = "YES", Value="YES"},
+								new SelectListItem() {Text = "NO", Value="NO"}							
+								}, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_LockerID" class="form-label">Locker ID</label>
+                                @Html.TextBoxFor(m=>m.Access_PropertiesandMembership_LockerID, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_CompanySIMCardID" class="form-label">Company SIM Card ID</label>
+                                @Html.TextBoxFor(m=>m.Access_PropertiesandMembership_CompanySIMCardID, new{@class="form-control", @readonly="readonly"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_CompanyPhone" class="form-label">Company Phone</label>
+                                @Html.DropDownListFor(m=>m.Access_PropertiesandMembership_CompanyPhone, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+                                new SelectListItem() {Text = "YES", Value="YES"},
+                                new SelectListItem() {Text = "NO", Value="NO"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_CooperativeMembership" class="form-label">Cooperative Membership</label>
+                                @Html.DropDownListFor(m=>m.Access_PropertiesandMembership_CooperativeMembership, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+								new SelectListItem() {Text = "YES", Value="YES"},
+								new SelectListItem() {Text = "NO", Value="NO"}							
+								}, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_UNIONMEMBERSHIP" class="form-label">UNION MEMBERSHIP</label>
+                                @Html.DropDownListFor(m=>m.Access_PropertiesandMembership_UNIONMEMBERSHIP, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+                                new SelectListItem() {Text = "YES", Value="YES"},
+                                new SelectListItem() {Text = "NO", Value="NO"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>
+
+							 <div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_UNIONSTARTDATE" class="form-label">UNION START DATE</label>
+                                @Html.TextBoxFor(m => m.Access_PropertiesandMembership_UNIONSTARTDATE, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>
+
+							 <div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_UNIONEXITDATE" class="form-label">UNION EXIT DATE</label>
+                                @Html.TextBoxFor(m => m.Access_PropertiesandMembership_UNIONEXITDATE, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                            </div>			
+                            
+							<div class="mb-3 mt-3">
+                                <label for="Access_PropertiesandMembership_UNIONMEMBERSHIPSTATUS" class="form-label">UNION MEMBERSHIP STATUS</label>
+                                @Html.DropDownListFor(m=>m.Access_PropertiesandMembership_UNIONMEMBERSHIPSTATUS, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+                                new SelectListItem() {Text = "ACTIVE", Value="ACTIVE"},
+                                new SelectListItem() {Text = "INACTIVE", Value="INACTIVE"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                            </div>			
+                        </div>
+                        <!-- AccessPropAndMembership tab end-->
+
+                        <!-- ExitInformation tab start-->
+                        <div role="tabpanel1" class="tab-pane fade" id="ExitInformation">
+                            <div class="mt-3 mb-3">
+                                <h3>Exit Information</h3>
+                            </div>
+						  
+						  <div class="mb-3 mt-3">
+                                <label for="ExitInformation_TypeofExit" class="form-label">Type of Exit</label>
+                                @Html.DropDownListFor(m=>m.ExitInformation_TypeofExit, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+								new SelectListItem() {Text = "END CONTRACT", Value="END CONTRACT"},
+								new SelectListItem() {Text = "RESIGN", Value="RESIGN"},	
+								new SelectListItem() {Text = "ABSCOND", Value="ABSCOND"},
+								new SelectListItem() {Text = "RETIREMENT", Value="RETIREMENT"},
+								new SelectListItem() {Text = "PASSED AWAY", Value="PASSED AWAY"},
+								new SelectListItem() {Text = "TERMINATION", Value="TERMINATION"}									
+								}, new { @class="form-control", @disabled = "disabled"})
+                          </div>
+						  
+						  <div class="mb-3 mt-3">
+                                <label for="ExitInformation_LastPhysicalDate" class="form-label">Last Physical Date </label>
+                                @Html.TextBoxFor(m => m.ExitInformation_LastPhysicalDate, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                          </div>
+						  
+						   <div class="mb-3 mt-3">
+                                <label for="ExitInformation_EffectiveDate" class="form-label">Effective Date</label>
+                                @Html.TextBoxFor(m => m.ExitInformation_EffectiveDate, "{0:yyyy-MM-dd}", new { @class ="form-control", type="date", @readonly="readonly"})
+                          </div>
+						  
+						  <div class="mb-3 mt-3">
+                                <label for="ExitInformation_ReasonofLeaving" class="form-label">Reason of Leaving</label>
+                                @Html.DropDownListFor(m=>m.ExitInformation_ReasonofLeaving, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+								new SelectListItem() {Text = "YES", Value="YES"},
+								new SelectListItem() {Text = "NO", Value="NO"}							
+								}, new { @class="form-control", @disabled = "disabled"})
+                          </div>
+						  
+						  <div class="mb-3 mt-3">
+                                <label for="ExitInformation_Eligibletorehire" class="form-label">Eligible to rehire</label>
+                                @Html.DropDownListFor(m=>m.ExitInformation_Eligibletorehire, new SelectListItem[] {
+                                new SelectListItem() {Text = "-", Value = "-"},
+                                new SelectListItem() {Text = "YES", Value="YES"},
+                                new SelectListItem() {Text = "NO", Value="NO"}
+                                }, new { @class="form-control", @disabled = "disabled"})
+                          </div>
+                        </div>
+                        <!-- ExitInformation tab end-->                      
+                    </div>
+                }                                   
+            </div>
+        </div>
+
+    <script src="~/js/jquery-3.6.1.js"></script>
+
+    <script>
+
+        //memanggil Job title berdasarkan grade level
+        $('#Jobprofile_GradeORLevel').change(function () {
+            $('#Jobprofile_JobTitle').empty();
+            $("#Jobprofile_JobTitle").append("<option value=''>--Select Job Title --</option>");
+            if ($(this).val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetJobTitle",
+                    data: { Id_GradeLevel: $(this).val() },
+                    success: function (data) {
+                        $('#Jobprofile_JobTitle').append(data);
+                    }
+                });
+            }
+        });
+
+
+        //memanggil Job title berdasarkan grade level ketika loadpage untuk update dan detail data
+        $(document).ready(function () {
+            $('#Jobprofile_JobTitle').empty();
+            //$("#Jobprofile_JobTitle").append("<option value=''>--Select Job Title2--</option>");
+            if ($('#Jobprofile_GradeORLevel').val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetJobTitleLoad",
+                    data: { Id_GradeLevel: $('#Jobprofile_GradeORLevel').val(), LocalID: $('#Basicinfo_LOCALID').val() },
+                    success: function (data) {
+                        $('#Jobprofile_JobTitle').append(data);
+                    }
+                });
+            }
+
+
+        });
+
+        //memanggil Job title berdasarkan grade level ketika loadpage untuk detail data di admin approval
+        /*$(document).ready(function () {
+            $('#Jobprofile_JobTitle').empty();
+            //$("#Jobprofile_JobTitle").append("<option value=''>--Select Job Title2--</option>");
+            if ($('#Jobprofile_GradeORLevel').val() > 0) {
+                $.ajax({
+                    type: "GET",
+                url: "/Home/GetJobTitleLoadUsulan",
+                data: { Id_GradeLevel: $('#Jobprofile_GradeORLevel').val(), LocalID: $('#Basicinfo_LOCALID').val() },
+                    success: function (data) {
+                      $('#Jobprofile_JobTitle').append(data);
+                    }
+              });
+            }
+
+
+        });*/
+
+
+        //Memanggil labor type berdasarkan job title
+        $('#Jobprofile_JobTitle').change(function () {
+            $('#Jobprofile_LaborType').empty();
+            $("#Jobprofile_LaborType").append("<option value=''>--Select Labor Type--</option>");
+            if ($(this).val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetLaborType",
+                    data: { Id_JobTitle: $(this).val() },
+                    success: function (data) {
+                        $('#Jobprofile_LaborType').append(data);
+                    }
+                });
+            }
+        });
+
+        //Memanggil labor type berdasarkan job title ketika load page untuk update dan detail data
+        $(document).ready(function () {
+            $('#Jobprofile_LaborType').empty();
+            //$("#Jobprofile_LaborType").append("<option value=''>--Select Labor Type2--</option>");
+            if ($('#Jobprofile_GradeORLevel').val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetLaborTypeLoad",
+                    data: { Id_GradeLevel: $('#Jobprofile_GradeORLevel').val(), LocalID: $('#Basicinfo_LOCALID').val() },
+                    success: function (data) {
+                        $('#Jobprofile_LaborType').append(data);
+                    }
+                });
+            }
+        });
+
+        //Memanggil labor Class berdasarkan Labor Type
+        $('#Jobprofile_LaborType').change(function () {
+            $('#Jobprofile_LaborClass').empty();
+            $("#Jobprofile_LaborClass").append("<option value=''>--Select Labor Class--</option>");
+            if ($(this).val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetLaborClass",
+                    data: { Id_LaborType: $(this).val() },
+                    //datatype: "Json",
+                    success: function (data) {
+                        $('#Jobprofile_LaborClass').append(data);
+
+                    }
+                });
+            }
+
+
+        });
+
+        //Memanggil Labor class berdasarkan labor type ketika load page untuk update dan detail data
+        $(document).ready(function () {
+            $('#Jobprofile_LaborClass').empty();
+            //$("#Jobprofile_LaborClass").append("<option value=''>--Select Labor Class2--</option>");
+            if ($('#Jobprofile_GradeORLevel').val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetLaborClassLoad",
+                    data: { Id_GradeLevel: $('#Jobprofile_GradeORLevel').val(), LocalID: $('#Basicinfo_LOCALID').val() },
+                    success: function (data) {
+                        $('#Jobprofile_LaborClass').append(data);
+                    }
+                });
+            }
+        });
+
+
+        //Memanggil Cost Center berdasarkan Division
+        $('#Jobprofile_Division').change(function () {
+            $('#Jobprofile_CostCenter').empty();
+            $("#Jobprofile_CostCenter").append("<option value=''>--Select Cost Center--</option>");
+            if ($(this).val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetCostCenter",
+                    data: { Id_Division: $(this).val() },
+                    //datatype: "Json",
+                    success: function (data) {
+                        $('#Jobprofile_CostCenter').append(data);
+
+                    }
+                });
+            }
+        });
+
+        //Memanggil Cost Center berdasarkan Division ketika loadpage untuk update dan detail data
+        $(document).ready(function () {
+            $('#Jobprofile_CostCenter').empty();
+            //$("#Jobprofile_CostCenter").append("<option value=''>--Select Cost Center--</option>");
+            if ($('#Jobprofile_Division').val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetCostCenterLoad",
+                    data: { Id_Division: $('#Jobprofile_Division').val(), LocalID: $('#Basicinfo_LOCALID').val() },
+                    success: function (data) {
+                        $('#Jobprofile_CostCenter').append(data);
+                    }
+                });
+            }
+        });
+
+        //Memanggil Department berdasarkan Cost Center
+        $('#Jobprofile_CostCenter').change(function () {
+            $('#Jobprofile_Department').empty();
+            $("#Jobprofile_Department").append("<option value=''>--Select Department--</option>");
+
+            if ($(this).val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetJobPost",
+                    data: { Id_CostCenter: $(this).val() },
+                    //datatype: "Json",
+                    success: function (data) {
+                        $('#Jobprofile_Department').append(data);
+
+                    }
+                });
+            }
+        });
+
+        //Memanggil Department berdasarkan Cost Center ketika loadpage untuk update dan detail data
+        $(document).ready(function () {
+            $('#Jobprofile_Department').empty();
+            //$("#Jobprofile_Department").append("<option value=''>--Select Department2--</option>");
+            if ($('#Jobprofile_Division').val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetJobPostLoad",
+                    data: { Id_Division: $('#Jobprofile_Division').val(), LocalID: $('#Basicinfo_LOCALID').val() },
+                    success: function (data) {
+                        $('#Jobprofile_Department').append(data);
+                    }
+                });
+            }
+        });
+
+
+        //Memanggil Source Berdasarkan Method Of Recruitment
+        $('#Recruitment_MethodofRecruitment').change(function () {
+            $('#Recruitment_Source').empty();
+            $("#Recruitment_Source").append("<option value=''>--Select Source--</option>");
+
+            if ($(this).val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetSource",
+                    data: { Id_MethodOfRecruitment: $(this).val() },
+                    //datatype: "Json",
+                    success: function (data) {
+                        $('#Recruitment_Source').append(data);
+
+                    }
+                });
+            }
+
+
+        });
+
+        //Memanggil Source Berdasarkan Method Of Recruitment saat load page untuk update dan detail
+        $(document).ready(function () {
+            $('#Recruitment_Source').empty();
+            //$("#Recruitment_Source").append("<option value=''>--Select Source--</option>");
+            if ($('#Recruitment_MethodofRecruitment').val() > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetSourceLoad",
+                    data: { Id_MethodOfRecruitment: $('#Recruitment_MethodofRecruitment').val(), LocalID: $('#Basicinfo_LOCALID').val() },
+                    success: function (data) {
+                        $('#Recruitment_Source').append(data);
+
+                    }
+                });
+            }
+        });
+    </script>
+
+
+

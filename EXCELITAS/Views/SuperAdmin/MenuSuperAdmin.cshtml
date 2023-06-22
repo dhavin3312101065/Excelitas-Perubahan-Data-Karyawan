@@ -1,0 +1,14 @@
+﻿@inject IHttpContextAccessor Accessor
+
+@{
+    ViewData["Title"] = "Menu Super Admin";
+
+}
+
+@{
+    Layout = "_LayoutSuperAdmin";
+}
+<h2>SELAMAT DATANG</h2>
+<h4 style="color :blue" , class="page-title">Welcome, You are logged in as @Accessor.HttpContext.Session.GetString("Username")</h4>
+<br />
+

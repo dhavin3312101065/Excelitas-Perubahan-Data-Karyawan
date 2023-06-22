@@ -1,0 +1,33 @@
+﻿@model EXCELITAS.Models.GradeOrLevel
+@*@model EXCELITAS.Models.MyViewModel*@
+@inject IHttpContextAccessor Accessor
+
+@{
+    Layout = "_LayoutSuperAdmin";
+}
+
+
+<div class="card mt-5">
+    <div class="card-header bg-secondary text-white">Form Input Data @* as @Accessor.HttpContext.Session.GetString("Username") with role = @Accessor.HttpContext.Session.GetInt32("Role")*@</div>
+    <div class="card-body">
+
+        @using (Html.BeginForm("SaveGradeOrLevel", "SuperAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+                   @* <div class="mb-3">
+                        <label for="Id_GradeLevel" class="form-label">Id Grade Level</label>
+                        @Html.TextBoxFor(m=>m.Id_GradeLevel, new{@class="form-control"})
+                    </div>*@
+
+            <div class="mb-3">            
+                <label for="Nama_GradeLevel" class="form-label">Nama Grade Or Level</label>            
+                @Html.TextBoxFor(m=>m.Nama_GradeLevel, new{@class="form-control"})            
+            </div>            
+
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            <button type="reset" class="btn btn-danger mb-3">Reset</button>
+                
+        }
+
+    </div>
+</div>

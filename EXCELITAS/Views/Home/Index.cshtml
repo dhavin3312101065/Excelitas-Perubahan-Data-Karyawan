@@ -1,0 +1,56 @@
+﻿@model EXCELITAS.data.TblUser
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EXCELITAS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EXCELITAS.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container d-flex align-items-center" style="height:100vh;">
+        <div class="row w-100 m-auto">
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <div class="col-md-4>
+                    <h1>Login</h1>
+
+                    <h4>Form Login</h4>
+                    <hr />
+                        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                        {
+                            <div class="d-flex flex-column justify-content-center">
+                                <div class="mb-3">
+                                    <label for="Username" class="form-label">Username</label>
+                                    @Html.TextBoxFor(m=>m.Username, new{@class="form-control"})
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Password" class="form-label">Password</label>
+                                    @Html.PasswordFor(m=>m.Password, new{@class="form-control"})
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary" value="Index">Submit</button>
+                                </div>
+                            </div>
+                        }
+                        <div>
+                            @*<a asp-action="Home/Register">asp-controller="Home" asp-action="Privacy"Back to List</a>*@
+                           @* <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register">Register</a>*@
+                        </div>
+                </div>
+
+
+            </div>
+</body>
+</html>
+
