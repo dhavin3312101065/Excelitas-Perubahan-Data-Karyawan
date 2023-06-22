@@ -22,24 +22,24 @@
     <div class="container d-flex align-items-center" style="height:100vh;">
         <div class="row w-100 m-auto">
             <div class="d-flex flex-column align-items-center justify-content-center">
-                <div class="col-md-4>
-                    <h1>Login</h1>
-
-                    <h4>Form Login</h4>
+                <div class="col-md-4 p-4 shadow bg-light rounded-3">
+                    <div class="d-flex justify-content-center text-primary">
+                        <svg height="130" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="user-circle-2" transform="translate(-2 -2)"> <path id="secondary" fill="#0275d8" d="M12,3A9,9,0,0,0,5.55,18.27a7,7,0,0,1,4.28-3.92h0a4,4,0,1,1,4.34,0h0a7,7,0,0,1,4.28,3.92A9,9,0,0,0,12,3Z"></path> <path id="primary" d="M16,11a4,4,0,1,1-4-4A4,4,0,0,1,16,11Zm-1.83,3.35a3.95,3.95,0,0,1-4.34,0,7,7,0,0,0-4.28,3.92,9,9,0,0,0,12.81.09l.09-.09a7,7,0,0,0-4.28-3.92ZM21,12h0a9,9,0,0,0-9-9h0a9,9,0,0,0-9,9H3a9,9,0,0,0,9,9h0a9,9,0,0,0,9-9Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"></path> </g> </g></svg>
+                    </div>
                     <hr />
                         @using (Html.BeginForm("Login", "Home", FormMethod.Post))
                         {
                             <div class="d-flex flex-column justify-content-center">
                                 <div class="mb-3">
                                     <label for="Username" class="form-label">Username</label>
-                                    @Html.TextBoxFor(m=>m.Username, new{@class="form-control"})
+                                    @Html.TextBoxFor(m=>m.Username, new{@class="form-control", @placeholder="Username"})
                                 </div>
                                 <div class="mb-3">
                                     <label for="Password" class="form-label">Password</label>
-                                    @Html.PasswordFor(m=>m.Password, new{@class="form-control"})
+                                @Html.PasswordFor(m=>m.Password, new{@class="form-control", @placeholder="********"})
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-primary" value="Index">Submit</button>
+                                    <button type="submit" class="btn btn-primary w-100" value="Index">Submit</button>
                                 </div>
                             </div>
                         }
